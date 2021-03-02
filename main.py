@@ -81,8 +81,6 @@ def get_article(name):
 
   return news
 
-
-
 @app.route('/')
 def index():
   order_by = request.args.get('order_by', default='popular')
@@ -94,6 +92,8 @@ def index():
     db[order_by] = news
   return render_template('index.html', order_by = order_by, news = news)
 
+
+
 @app.route('/<id>')
 def detail(id):
   coms = get_info(id)
@@ -103,22 +103,6 @@ def detail(id):
   url = coms['url']
   comments = coms['comment']
   return render_template('detail.html',title= title, author = author, url = url, point= point, comments = comments)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 app.run(host="0.0.0.0")
